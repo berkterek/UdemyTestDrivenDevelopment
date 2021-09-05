@@ -1,9 +1,8 @@
 {
-    "name": "UdemyTdd.Controllers",
+    "name": "UdemyTdd.Inputs",
     "rootNamespace": "",
     "references": [
-        "GUID:aa7bee97397247945b1931713bdd9000",
-        "GUID:9568e55eba73ed944bdd227b2da55be5"
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
