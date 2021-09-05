@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UdemyTdd.Abstracts.Inputs;
 using UdemyTdd.Inputs;
 using UdemyTdd.Movements;
 using UnityEngine;
@@ -8,20 +9,21 @@ namespace UdemyTdd.Controllers
 {
     public class PlayerController : MonoBehaviour
     {
-        NormalInputReader _input;
         MoveWithTranslate _mover;
 
         Vector3 _direction;
         
+        public IInputReader Input { get; set; }
+        
         void Awake()
         {
-            _input = new NormalInputReader();
+            Input = new NormalInputReader();
             _mover = new MoveWithTranslate(this.transform);
         }
 
         void Update()
         {
-            _direction = _input.Direction;
+            _direction = Input.Direction;
         }
 
         void FixedUpdate()

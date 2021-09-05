@@ -1,9 +1,10 @@
+using UdemyTdd.Abstracts.Inputs;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace UdemyTdd.Inputs
 {
-    public class NormalInputReader
+    public class NormalInputReader : IInputReader
     {
         public Vector3 Direction { get; private set; }
 

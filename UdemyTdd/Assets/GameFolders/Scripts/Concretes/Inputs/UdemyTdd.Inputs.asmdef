@@ -2,7 +2,8 @@
     "name": "UdemyTdd.Inputs",
     "rootNamespace": "",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c"
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:fa0045270507c4f40bd2bbf9e6ef3633"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
