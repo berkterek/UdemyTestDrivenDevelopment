@@ -1,7 +1,9 @@
 {
     "name": "UdemyTdd.Movements",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:9e7634d87f187ec4bb3ad63dd1ed7cea"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

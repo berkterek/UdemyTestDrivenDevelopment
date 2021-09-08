@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UdemyTdd.Abstracts.Inputs;
+using UdemyTdd.Abstracts.Movements;
 using UdemyTdd.Inputs;
 using UdemyTdd.Movements;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace UdemyTdd.Controllers
 {
     public class PlayerController : MonoBehaviour
     {
-        MoveWithTranslate _mover;
+        IMover _mover;
 
         Vector3 _direction;
         
@@ -18,7 +19,7 @@ namespace UdemyTdd.Controllers
         void Awake()
         {
             Input = new NormalInputReader();
-            _mover = new MoveWithTranslate(this.transform);
+            _mover = new MoveWithCharacterController(this.transform);
         }
 
         void Update()

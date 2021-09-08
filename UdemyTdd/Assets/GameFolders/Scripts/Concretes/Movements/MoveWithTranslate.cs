@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+using UdemyTdd.Abstracts.Movements;
 using UnityEngine;
 
 namespace UdemyTdd.Movements
 {
-    public class MoveWithTranslate
+    public class MoveWithTranslate : IMover
     {
         float _moveSpeed = 5f;
         Transform _transform;
