@@ -24,7 +24,7 @@ namespace UdemyTdd.Movements
             {
                 _playerVelocity.y = 0f;
             }
-            
+
             _characterController.Move(direction * Time.deltaTime * _moveSpeed);
 
             if (direction != Vector3.zero)

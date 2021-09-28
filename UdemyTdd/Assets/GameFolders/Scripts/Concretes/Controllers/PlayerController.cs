@@ -19,7 +19,7 @@ namespace UdemyTdd.Controllers
         void Awake()
         {
             Input = new NormalInputReader();
-            _mover = new MoveWithCharacterController(this.transform);
+            _mover = new MoveWithTranslate(this.transform);
         }
 
         void Update()
