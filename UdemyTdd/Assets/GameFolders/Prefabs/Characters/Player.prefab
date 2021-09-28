@@ -5458,7 +5458,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6218656209429789296}
   - component: {fileID: 6273814987259175176}
-  - component: {fileID: 6329349745865876686}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -5503,65 +5502,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6329349745865876686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6216942052431272030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0871c81de9250fc46b0a5d8e7fdbaf7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  package_mark: AA
-  first_set_number: 1
-  last_set_number: 2
-  set_numeration: 001
-  Gender:
-  - Male
-  - Female
-  gender_idx: 0
-  other_packages: []
-  unisex_belt: {fileID: 6217149209898040426}
-  unisex_cape: {fileID: 6216566736982632280}
-  unisex_elbow_l: {fileID: 6217082146428400942}
-  unisex_elbow_r: {fileID: 6216822211237922138}
-  unisex_eyebrows: {fileID: 6216622465142001168}
-  unisex_knee_l: {fileID: 6215077017466956454}
-  unisex_knee_r: {fileID: 6217135997447647502}
-  unisex_pauldron_l: {fileID: 6216536975651359560}
-  unisex_pauldron_r: {fileID: 6216883662577814644}
-  arm_f_l: {fileID: 6216376063314434196}
-  arm_f_r: {fileID: 6216755166798722644}
-  calf_f_l: {fileID: 6214993638015510726}
-  calf_f_r: {fileID: 6216945881383487002}
-  foot_f_l: {fileID: 6217207738999109918}
-  foot_f_r: {fileID: 6216736173990261546}
-  forearm_f_l: {fileID: 6216971775691451244}
-  forearm_f_r: {fileID: 6216940775925427390}
-  hair_f: {fileID: 6216838696014823378}
-  hand_f_l: {fileID: 6216300015614186078}
-  hand_f_r: {fileID: 6215092168284147614}
-  head_f: {fileID: 6216656762591621116}
-  legs_f: {fileID: 6217056897633761022}
-  torso_f: {fileID: 6216540431551965528}
-  arm_m_l: {fileID: 6216438310831082542}
-  arm_m_r: {fileID: 6216413285957272046}
-  calf_m_l: {fileID: 6217060279777763168}
-  calf_m_r: {fileID: 6216390935001844034}
-  facial_hair: {fileID: 6216880576039269076}
-  foot_m_l: {fileID: 6217051565805437808}
-  foot_m_r: {fileID: 6215009358860210032}
-  forearm_m_l: {fileID: 6216576103009622904}
-  forearm_m_r: {fileID: 6216872859185397586}
-  hair_m: {fileID: 6217013553052759914}
-  hand_m_l: {fileID: 6216572096975484070}
-  hand_m_r: {fileID: 6216991177870953576}
-  head_m: {fileID: 6215001578460388390}
-  legs_m: {fileID: 6215060475235433882}
-  torso_m: {fileID: 6216774547855195242}
 --- !u!1 &6216945881383487002
 GameObject:
   m_ObjectHideFlags: 0
@@ -7763,9 +7703,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7314166526218362298}
-  - component: {fileID: 7314166526218362299}
   - component: {fileID: 3753760233943391857}
-  - component: {fileID: 366579944}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -7788,18 +7726,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7314166526218362299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7314166526218362297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72b8db7e3f487cb448130d3cc5bbae94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &3753760233943391857
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7814,21 +7740,3 @@ CapsuleCollider:
   m_Height: 1.8625892
   m_Direction: 1
   m_Center: {x: 0, y: 0.8991342, z: 0}
---- !u!143 &366579944
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7314166526218362297}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}

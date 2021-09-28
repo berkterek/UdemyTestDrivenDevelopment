@@ -1,25 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UdemyTdd.Abstracts.Inputs;
 using UdemyTdd.Abstracts.Movements;
 using UdemyTdd.Inputs;
-using UdemyTdd.Movements;
 using UnityEngine;
 
-namespace UdemyTdd.Controllers
+namespace UdemyTdd.Abstracts.Controllers
 {
-    public class PlayerController : MonoBehaviour
+    public abstract class PlayerController : MonoBehaviour
     {
-        IMover _mover;
+        protected IMover _mover;
 
         Vector3 _direction;
         
         public IInputReader Input { get; set; }
-        
-        void Awake()
+
+        protected virtual void Awake()
         {
             Input = new NormalInputReader();
-            _mover = new MoveWithTranslate(this.transform);
         }
 
         void Update()

@@ -7,19 +7,19 @@ namespace UdemyTdd.Movements
     {
         float _moveSpeed = 5f;
         Transform _transform;
-        Camera _camera;
+        Transform _directionLookPoint;
 
         public MoveWithTranslate(Transform transform)
         {
             _transform = transform;
-            _camera = Camera.main;
+            _directionLookPoint = Camera.main.transform.GetChild(0).GetComponent<Transform>();
         }
 
         public void FixedTick(Vector3 direction)
         {
             if (direction.magnitude == 0f) return;
             
-            _transform.Translate(direction * (_moveSpeed * Time.deltaTime),_camera.transform);
+            _transform.Translate(direction * (_moveSpeed * Time.deltaTime),_directionLookPoint);
             _transform.forward = direction;
         }
     }    

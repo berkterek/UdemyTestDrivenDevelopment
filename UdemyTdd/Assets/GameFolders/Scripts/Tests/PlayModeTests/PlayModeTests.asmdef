@@ -5,7 +5,8 @@
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "UdemyTdd.Controllers",
-        "UdemyTdd.Abstracts.Inputs"
+        "UdemyTdd.Abstracts.Inputs",
+        "UdemyTdd.Abstracts.Controllers"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
