@@ -1,4 +1,6 @@
 using UdemyTdd.Abstracts.Controllers;
+using UdemyTdd.Abstracts.Inputs;
+using UdemyTdd.Inputs;
 using UdemyTdd.Movements;
 using UnityEngine;
 
@@ -6,10 +8,17 @@ namespace UdemyTdd.Controllers
 {
     public class PlayerCharacterController : PlayerController
     {
-        protected override void Awake()
+        public IDirectionInputReader Input { get; set; }
+        
+        void Awake()
         {
-            base.Awake();
             _mover = new MoveWithCharacterController(this.transform);
+            Input = new DirectionInputReader();
+        }
+
+        void Update()
+        {
+            _direction = Input.Direction;
         }
     }    
 }

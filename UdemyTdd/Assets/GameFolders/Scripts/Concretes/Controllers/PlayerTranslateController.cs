@@ -1,14 +1,23 @@
 ﻿using UdemyTdd.Abstracts.Controllers;
+using UdemyTdd.Abstracts.Inputs;
+using UdemyTdd.Inputs;
 using UdemyTdd.Movements;
 
 namespace UdemyTdd.Controllers
 {
     public class PlayerTranslateController : PlayerController
     {
-        protected override void Awake()
+        public IDirectionInputReader Input { get; set; }
+        
+        void Awake()
         {
-            base.Awake();
             _mover = new MoveWithTranslate(this.transform);
+            Input = new DirectionInputReader();
+        }
+
+        void Update()
+        {
+            _direction = Input.Direction;
         }
     }
 }

@@ -4,16 +4,16 @@ using UnityEngine.InputSystem;
 
 namespace UdemyTdd.Inputs
 {
-    public class NormalInputReader : IInputReader
+    public class DirectionInputReader : IDirectionInputReader
     {
         public Vector3 Direction { get; private set; }
 
-        public NormalInputReader()
+        public DirectionInputReader()
         {
             GameInputActions input = new GameInputActions();
             
-            input.Player.Movement.performed += OnMovement;
-            input.Player.Movement.canceled += OnMovement;
+            input.PlayerGamepad.Movement.performed += OnMovement;
+            input.PlayerGamepad.Movement.canceled += OnMovement;
             
             input.Enable();
         }

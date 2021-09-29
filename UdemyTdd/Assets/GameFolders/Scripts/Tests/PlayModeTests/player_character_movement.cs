@@ -19,7 +19,7 @@ namespace PlayModeTests.Players
         private PlayerCharacterController GetPlayer()
         {
             PlayerCharacterController player = GameObject.FindObjectOfType<PlayerCharacterController>();
-            player.Input = Substitute.For<IInputReader>();
+            player.Input = Substitute.For<IDirectionInputReader>();
             player.transform.position = Vector3.zero;
 
             return player;

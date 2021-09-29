@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tests/PlayerTranslateMovementTest.unity
     guid: 0dfee48b3427fef40aab9371c1e1ced9
+  - enabled: 1
+    path: Assets/Scenes/Tests/PlayerNavmeshMovementTest.unity
+    guid: b22609dd59750ac4d8b67efe7553f1c7
   m_configObjects: {}

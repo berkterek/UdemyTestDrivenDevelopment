@@ -17,7 +17,7 @@ namespace UdemyTdd.Inputs
     ""name"": ""GameInputActions"",
     ""maps"": [
         {
-            ""name"": ""Player"",
+            ""name"": ""PlayerGamepad"",
             ""id"": ""df70fa95-8a34-4494-b137-73ab6b9c7d37"",
             ""actions"": [
                 {
@@ -25,14 +25,6 @@ namespace UdemyTdd.Inputs
                     ""type"": ""Value"",
                     ""id"": ""351f2ccd-1f9f-44bf-9bec-d62ac5c5f408"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Fire"",
-                    ""type"": ""Button"",
-                    ""id"": ""6c2ab1b8-8984-453a-af3d-a3c78ae1679a"",
-                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -158,59 +150,50 @@ namespace UdemyTdd.Inputs
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PlayerMouse"",
+            ""id"": ""356367c1-5176-4098-9a7d-0a47610f14bb"",
+            ""actions"": [
+                {
+                    ""name"": ""MousePosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""5db52908-3aa4-41c8-977f-daaabd374ca7"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 },
                 {
+                    ""name"": ""LeftButtonDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""44240a45-1e17-4290-a744-c53dfc2cd4a2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
                     ""name"": """",
-                    ""id"": ""143bb1cd-cc10-4eca-a2f0-a3664166fe91"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""id"": ""258ffdb2-e9e7-4510-bbfc-abd506e81e73"",
+                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Fire"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MousePosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""05f6913d-c316-48b2-a6bb-e225f14c7960"",
+                    ""id"": ""c2e0025f-b197-4516-ad5a-0959d80100d9"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""886e731e-7071-4ae4-95c0-e61739dad6fd"",
-                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Touch"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ee3d0cd2-254e-47a7-a8cb-bc94d9658c54"",
-                    ""path"": ""<Joystick>/trigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8255d333-5683-4943-a58a-ccb207ff1dce"",
-                    ""path"": ""<XRController>/{PrimaryAction}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XR"",
-                    ""action"": ""Fire"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""LeftButtonDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -786,10 +769,13 @@ namespace UdemyTdd.Inputs
         }
     ]
 }");
-            // Player
-            m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-            m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
-            m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+            // PlayerGamepad
+            m_PlayerGamepad = asset.FindActionMap("PlayerGamepad", throwIfNotFound: true);
+            m_PlayerGamepad_Movement = m_PlayerGamepad.FindAction("Movement", throwIfNotFound: true);
+            // PlayerMouse
+            m_PlayerMouse = asset.FindActionMap("PlayerMouse", throwIfNotFound: true);
+            m_PlayerMouse_MousePosition = m_PlayerMouse.FindAction("MousePosition", throwIfNotFound: true);
+            m_PlayerMouse_LeftButtonDown = m_PlayerMouse.FindAction("LeftButtonDown", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -848,46 +834,79 @@ namespace UdemyTdd.Inputs
             asset.Disable();
         }
 
-        // Player
-        private readonly InputActionMap m_Player;
-        private IPlayerActions m_PlayerActionsCallbackInterface;
-        private readonly InputAction m_Player_Movement;
-        private readonly InputAction m_Player_Fire;
-        public struct PlayerActions
+        // PlayerGamepad
+        private readonly InputActionMap m_PlayerGamepad;
+        private IPlayerGamepadActions m_PlayerGamepadActionsCallbackInterface;
+        private readonly InputAction m_PlayerGamepad_Movement;
+        public struct PlayerGamepadActions
         {
             private @GameInputActions m_Wrapper;
-            public PlayerActions(@GameInputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Movement => m_Wrapper.m_Player_Movement;
-            public InputAction @Fire => m_Wrapper.m_Player_Fire;
-            public InputActionMap Get() { return m_Wrapper.m_Player; }
+            public PlayerGamepadActions(@GameInputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Movement => m_Wrapper.m_PlayerGamepad_Movement;
+            public InputActionMap Get() { return m_Wrapper.m_PlayerGamepad; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-            public void SetCallbacks(IPlayerActions instance)
+            public static implicit operator InputActionMap(PlayerGamepadActions set) { return set.Get(); }
+            public void SetCallbacks(IPlayerGamepadActions instance)
             {
-                if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
+                if (m_Wrapper.m_PlayerGamepadActionsCallbackInterface != null)
                 {
-                    @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                    @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                    @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                    @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                    @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                    @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                    @Movement.started -= m_Wrapper.m_PlayerGamepadActionsCallbackInterface.OnMovement;
+                    @Movement.performed -= m_Wrapper.m_PlayerGamepadActionsCallbackInterface.OnMovement;
+                    @Movement.canceled -= m_Wrapper.m_PlayerGamepadActionsCallbackInterface.OnMovement;
                 }
-                m_Wrapper.m_PlayerActionsCallbackInterface = instance;
+                m_Wrapper.m_PlayerGamepadActionsCallbackInterface = instance;
                 if (instance != null)
                 {
                     @Movement.started += instance.OnMovement;
                     @Movement.performed += instance.OnMovement;
                     @Movement.canceled += instance.OnMovement;
-                    @Fire.started += instance.OnFire;
-                    @Fire.performed += instance.OnFire;
-                    @Fire.canceled += instance.OnFire;
                 }
             }
         }
-        public PlayerActions @Player => new PlayerActions(this);
+        public PlayerGamepadActions @PlayerGamepad => new PlayerGamepadActions(this);
+
+        // PlayerMouse
+        private readonly InputActionMap m_PlayerMouse;
+        private IPlayerMouseActions m_PlayerMouseActionsCallbackInterface;
+        private readonly InputAction m_PlayerMouse_MousePosition;
+        private readonly InputAction m_PlayerMouse_LeftButtonDown;
+        public struct PlayerMouseActions
+        {
+            private @GameInputActions m_Wrapper;
+            public PlayerMouseActions(@GameInputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @MousePosition => m_Wrapper.m_PlayerMouse_MousePosition;
+            public InputAction @LeftButtonDown => m_Wrapper.m_PlayerMouse_LeftButtonDown;
+            public InputActionMap Get() { return m_Wrapper.m_PlayerMouse; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(PlayerMouseActions set) { return set.Get(); }
+            public void SetCallbacks(IPlayerMouseActions instance)
+            {
+                if (m_Wrapper.m_PlayerMouseActionsCallbackInterface != null)
+                {
+                    @MousePosition.started -= m_Wrapper.m_PlayerMouseActionsCallbackInterface.OnMousePosition;
+                    @MousePosition.performed -= m_Wrapper.m_PlayerMouseActionsCallbackInterface.OnMousePosition;
+                    @MousePosition.canceled -= m_Wrapper.m_PlayerMouseActionsCallbackInterface.OnMousePosition;
+                    @LeftButtonDown.started -= m_Wrapper.m_PlayerMouseActionsCallbackInterface.OnLeftButtonDown;
+                    @LeftButtonDown.performed -= m_Wrapper.m_PlayerMouseActionsCallbackInterface.OnLeftButtonDown;
+                    @LeftButtonDown.canceled -= m_Wrapper.m_PlayerMouseActionsCallbackInterface.OnLeftButtonDown;
+                }
+                m_Wrapper.m_PlayerMouseActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @MousePosition.started += instance.OnMousePosition;
+                    @MousePosition.performed += instance.OnMousePosition;
+                    @MousePosition.canceled += instance.OnMousePosition;
+                    @LeftButtonDown.started += instance.OnLeftButtonDown;
+                    @LeftButtonDown.performed += instance.OnLeftButtonDown;
+                    @LeftButtonDown.canceled += instance.OnLeftButtonDown;
+                }
+            }
+        }
+        public PlayerMouseActions @PlayerMouse => new PlayerMouseActions(this);
 
         // UI
         private readonly InputActionMap m_UI;
@@ -1038,10 +1057,14 @@ namespace UdemyTdd.Inputs
                 return asset.controlSchemes[m_XRSchemeIndex];
             }
         }
-        public interface IPlayerActions
+        public interface IPlayerGamepadActions
         {
             void OnMovement(InputAction.CallbackContext context);
-            void OnFire(InputAction.CallbackContext context);
+        }
+        public interface IPlayerMouseActions
+        {
+            void OnMousePosition(InputAction.CallbackContext context);
+            void OnLeftButtonDown(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
