@@ -8,10 +8,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
-namespace PlayModeTests.Players
+namespace PlayModeTests.Players.Movements
 {
     public class player_navmesh_movement
     {
+        float _waitTime = 0.5f;
+        
         PlayerNavmeshController GetPlayer()
         {
             var player = GameObject.FindObjectOfType<PlayerNavmeshController>();
@@ -23,6 +25,11 @@ namespace PlayModeTests.Players
         {
             yield return SceneManager.LoadSceneAsync("PlayerNavmeshMovementTest");
         }
+
+        Camera GetSceneCamera()
+        {
+            return Camera.main;
+        }
     
         [UnityTest]
         public IEnumerator move_forward()
@@ -30,11 +37,19 @@ namespace PlayModeTests.Players
             yield return LoadPlayerMovementTestScene();
         
             var player = GetPlayer();
+            var camera = GetSceneCamera();
 
             Vector3 startPosition = player.transform.position;
-            player.Input.Direction.Returns(Vector3.forward);
 
-            yield return new WaitForSeconds(0.3f);
+            player.Input.IsLeftButtonDown.Returns(true);
+            Vector3 screenPosition = camera.WorldToScreenPoint(Vector3.forward * 3f);
+            player.Input.Direction.Returns(screenPosition);
+            
+            yield return new WaitForEndOfFrame();
+            
+            player.Input.IsLeftButtonDown.Returns(false);
+
+            yield return new WaitForSeconds(_waitTime);
         
             Assert.Greater(player.transform.position.z,startPosition.z);
         }
@@ -45,11 +60,19 @@ namespace PlayModeTests.Players
             yield return LoadPlayerMovementTestScene();
         
             var player = GetPlayer();
+            var camera = GetSceneCamera();
 
             Vector3 startPosition = player.transform.position;
-            player.Input.Direction.Returns(Vector3.back);
+            
+            player.Input.IsLeftButtonDown.Returns(true);
+            Vector3 screenPosition = camera.WorldToScreenPoint(Vector3.back * 3f);
+            player.Input.Direction.Returns(screenPosition);
+            
+            yield return new WaitForEndOfFrame();
+            
+            player.Input.IsLeftButtonDown.Returns(false);
 
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(_waitTime);
         
             Assert.Less(player.transform.position.z,startPosition.z);
         }
@@ -60,11 +83,19 @@ namespace PlayModeTests.Players
             yield return LoadPlayerMovementTestScene();
         
             var player = GetPlayer();
+            var camera = GetSceneCamera();
 
             Vector3 startPosition = player.transform.position;
-            player.Input.Direction.Returns(Vector3.right);
+            
+            player.Input.IsLeftButtonDown.Returns(true);
+            Vector3 screenPosition = camera.WorldToScreenPoint(Vector3.right * 3f);
+            player.Input.Direction.Returns(screenPosition);
+            
+            yield return new WaitForEndOfFrame();
+            
+            player.Input.IsLeftButtonDown.Returns(false);
 
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(_waitTime);
         
             Assert.Greater(player.transform.position.x,startPosition.x);
         }
@@ -75,11 +106,19 @@ namespace PlayModeTests.Players
             yield return LoadPlayerMovementTestScene();
         
             var player = GetPlayer();
+            var camera = GetSceneCamera();
 
             Vector3 startPosition = player.transform.position;
-            player.Input.Direction.Returns(Vector3.left);
+            
+            player.Input.IsLeftButtonDown.Returns(true);
+            Vector3 screenPosition = camera.WorldToScreenPoint(Vector3.left * 3f);
+            player.Input.Direction.Returns(screenPosition);
+            
+            yield return new WaitForEndOfFrame();
+            
+            player.Input.IsLeftButtonDown.Returns(false);
 
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(_waitTime);
         
             Assert.Less(player.transform.position.x,startPosition.x);
         }

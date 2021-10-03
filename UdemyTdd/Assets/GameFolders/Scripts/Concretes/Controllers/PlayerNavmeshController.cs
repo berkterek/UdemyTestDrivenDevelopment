@@ -1,6 +1,6 @@
 using UdemyTdd.Abstracts.Controllers;
 using UdemyTdd.Abstracts.Inputs;
-using UdemyTdd.Movements;
+using UdemyTdd.Factories;
 using UnityEngine;
 
 namespace UdemyTdd.Controllers
@@ -14,7 +14,7 @@ namespace UdemyTdd.Controllers
 
         void Awake()
         {
-            _mover = new MoveWithNavmeshAgent(this.transform);
+            _mover = new NavmeshMovementFactory(this.transform).Create();
             _camera = Camera.main;
             Input = new MouseInputReader();
         }

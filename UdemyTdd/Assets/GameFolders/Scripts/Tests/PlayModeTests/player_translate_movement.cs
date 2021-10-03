@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
-namespace PlayModeTests.Players
+namespace PlayModeTests.Players.Movements
 {
     public class player_translate_movement
     {

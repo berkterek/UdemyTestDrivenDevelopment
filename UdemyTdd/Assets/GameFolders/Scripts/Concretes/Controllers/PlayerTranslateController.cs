@@ -1,7 +1,7 @@
 ﻿using UdemyTdd.Abstracts.Controllers;
 using UdemyTdd.Abstracts.Inputs;
+using UdemyTdd.Factories;
 using UdemyTdd.Inputs;
-using UdemyTdd.Movements;
 
 namespace UdemyTdd.Controllers
 {
@@ -11,7 +11,7 @@ namespace UdemyTdd.Controllers
         
         void Awake()
         {
-            _mover = new MoveWithTranslate(this.transform);
+            _mover = new TranslateMovementFactory(this.transform).Create();
             Input = new DirectionInputReader();
         }
 
