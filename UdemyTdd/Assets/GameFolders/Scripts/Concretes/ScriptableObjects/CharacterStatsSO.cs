@@ -24,5 +24,20 @@ namespace UdemyTdd.ScriptableObjects
         public int Level => _level;
         public int MaxExperience => _maxExperience;
         public int CurrentExperience => _currentExperience;
+        public float IncreaseExperienceValue => _increaseExperienceValue;
+
+        public void SetExperiencePoint(int experiencePoint)
+        {
+            _currentExperience = experiencePoint;
+
+            while (_currentExperience >= _maxExperience)
+            {
+                int result = _currentExperience - _maxExperience;
+                _currentExperience = 0;
+                _currentExperience = result;
+                _maxExperience = Mathf.FloorToInt(_maxExperience * _increaseExperienceValue);
+                _level++;
+            }
+        }
     }    
 }
