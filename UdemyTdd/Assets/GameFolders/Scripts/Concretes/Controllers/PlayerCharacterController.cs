@@ -1,8 +1,6 @@
 using UdemyTdd.Abstracts.Controllers;
 using UdemyTdd.Abstracts.Inputs;
 using UdemyTdd.Factories;
-using UdemyTdd.Inputs;
-using UnityEngine;
 
 namespace UdemyTdd.Controllers
 {
@@ -13,7 +11,7 @@ namespace UdemyTdd.Controllers
         void Awake()
         {
             _mover = new CharacterControllerMovementFactory(this.transform).Create();
-            Input = new DirectionInputReader();
+            Input = new DirectionInputFactory().Create();
         }
 
         void Update()

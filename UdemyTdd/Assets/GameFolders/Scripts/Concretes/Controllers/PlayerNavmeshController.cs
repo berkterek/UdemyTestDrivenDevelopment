@@ -15,8 +15,8 @@ namespace UdemyTdd.Controllers
         void Awake()
         {
             _mover = new NavmeshMovementFactory(this.transform).Create();
+            Input = new MouseInputFactory().Create();
             _camera = Camera.main;
-            Input = new MouseInputReader();
         }
 
         void Update()
